@@ -1,0 +1,16 @@
+diff --git a/ViewModels/TaskViewModel.swift b/ViewModels/TaskViewModel.swift
+--- a/ViewModels/TaskViewModel.swift
++++ b/ViewModels/TaskViewModel.swift
+--- /Users/gitaeklee/Desktop/study/Snailer-Test1/diff_logs/TaskViewModel.original	2025-07-22 13:20:58
++++ /Users/gitaeklee/Desktop/study/Snailer-Test1/diff_logs/TaskViewModel.updated	2025-07-22 13:20:58
+@@ -3,8 +3,8 @@
+ 
+ class TaskViewModel: ObservableObject {
+   @Published var tasks: [Task] = []
+-  @Published var selectedCategory: TaskCategory?
+-  @Published var newTaskCategory: TaskCategory = .personal
++  @Published var selectedCategory: Task.TaskCategory?
++  @Published var newTaskCategory: Task.TaskCategory = .personal
+   @Published var searchText: String = ""
+   @Published var newTaskTitle: String = ""
+ 

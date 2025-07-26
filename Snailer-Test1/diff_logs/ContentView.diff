@@ -1,0 +1,14 @@
+diff --git a/ContentView.swift b/ContentView.swift
+--- a/ContentView.swift
++++ b/ContentView.swift
+--- /Users/gitaeklee/Desktop/study/Snailer-Test1/Snailer-Test1/diff_logs/ContentView.original	2025-07-22 22:05:17
++++ /Users/gitaeklee/Desktop/study/Snailer-Test1/Snailer-Test1/diff_logs/ContentView.updated	2025-07-22 22:05:17
+@@ -22,6 +22,8 @@
+             icon: "circle", count: viewModel.tasks.filter { !$0.isCompleted }.count,
+             label: "Pending")
+           StatusBarItem(icon: "tag.fill", count: viewModel.availableTags.count, label: "Tags")
++          ProgressView(value: viewModel.progress)
++            .padding()
+         }
+         .padding()
+         .background(Color(.systemGray6))

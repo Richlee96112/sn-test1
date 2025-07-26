@@ -1,0 +1,14 @@
+diff --git a/Views/CategoryButton.swift b/Views/CategoryButton.swift
+--- a/Views/CategoryButton.swift
++++ b/Views/CategoryButton.swift
+--- /Users/gitaeklee/Desktop/study/Snailer-Test1/diff_logs/CategoryButton.original	2025-07-22 13:20:25
++++ /Users/gitaeklee/Desktop/study/Snailer-Test1/diff_logs/CategoryButton.updated	2025-07-22 13:20:25
+@@ -1,7 +1,7 @@
+ import SwiftUI
+ 
+ struct CategoryButton: View {
+-  let category: TaskCategory
++  let category: Task.TaskCategory
+   let isSelected: Bool
+   let action: () -> Void
+ 

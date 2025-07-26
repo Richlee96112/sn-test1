@@ -1,0 +1,193 @@
+diff --git a/ContentView.swift b/ContentView.swift
+--- a/ContentView.swift
++++ b/ContentView.swift
+--- /Users/gitaeklee/Desktop/study/Snailer-Test1/diff_logs/ContentView.original	2025-07-22 13:19:50
++++ /Users/gitaeklee/Desktop/study/Snailer-Test1/diff_logs/ContentView.updated	2025-07-22 13:19:50
+@@ -1,102 +1,103 @@
+ import SwiftUI
+ 
+ struct ContentView: View {
+-  @AppStorage("isDarkMode") private var isDarkMode = false
+-  @StateObject private var viewModel = TaskViewModel()
+-  var body: some View {
+-    NavigationView {
+-      VStack {
+-        // Search field
+-        Text("Search Tasks")
+-          .font(.headline)
+-          .padding(.top)
++    @AppStorage("isDarkMode") private var isDarkMode = false
++    @StateObject private var viewModel = TaskViewModel()
++    var body: some View {
++        NavigationView {
++            VStack {
++                // Search field
++                Text("Search Tasks")
++                .font(.headline)
++                .padding(.top)
+ 
+-        TextField("Search", text: $viewModel.searchText)
++                TextField("Search", text: $viewModel.searchText)
+ 
+-        Button(action: { print("Test button tapped") }) {
+-          Text("Updated Button")
++                Button(action: { print("Test button tapped") }) {
++                Text("Updated Button")
++                .padding()
++                .background(Color.blue)
++                .foregroundColor(.white)
++                .cornerRadius(8)
++            }
+             .padding()
+-            .background(Color.blue)
+-            .foregroundColor(.white)
+-            .cornerRadius(8)
+-        }
+-        .padding()
+-        .textFieldStyle(RoundedBorderTextFieldStyle())
++            .textFieldStyle(RoundedBorderTextFieldStyle())
+ 
+-        // Category filters
+-        ScrollView(.horizontal, showsIndicators: false) {
+-          HStack(spacing: 10) {
+-            ForEach(TaskCategory.allCases, id: \.self) { category in
+-              CategoryButton(category: category, isSelected: viewModel.selectedCategory == category)
+-              {
+-                if viewModel.selectedCategory == category {
+-                  viewModel.selectedCategory = nil
+-                } else {
+-                  viewModel.selectedCategory = category
+-                }
+-              }
+-            }
+-          }
+-          .padding(.horizontal)
++            // Category filters
++            ScrollView(.horizontal, showsIndicators: false) {
++            HStack(spacing: 10) {
++            ForEach(Task.TaskCategory.allCases, id: \.self) { category in
+         }
+-
+-        // Task list
+-        List {
+-          ForEach(viewModel.filteredTasks) { task in
+-            HStack {
+-              Image(systemName: task.category.icon)
+-                .foregroundColor(.accentColor)
+-              Text(task.title)
+-              Spacer()
+-              Text(task.category.rawValue)
+-                .font(.caption)
+-                .foregroundColor(.secondary)
++        CategoryButton(category: category, isSelected: viewModel.selectedCategory == category)
++        {
++            if viewModel.selectedCategory == category {
++                viewModel.selectedCategory = nil
++            } else {
++                viewModel.selectedCategory = category
+             }
+-            .padding(.vertical, 8)
+-            .padding(.horizontal, 10)
+-            .background(.ultraThinMaterial)
+-            .clipShape(RoundedRectangle(cornerRadius: 8))
+-          }
+-          .onDelete { indexSet in
+-            viewModel.deleteTask(at: indexSet)
+-          }
+         }
++    }
++}
++.padding(.horizontal)
++}
+ 
+-        // Add new task section
+-        HStack {
+-          VStack {
+-            TextField("New Task", text: $viewModel.newTaskTitle)
+-              .textFieldStyle(RoundedBorderTextFieldStyle())
++// Task list
++List {
++    ForEach(viewModel.filteredTasks) { task in
++    HStack {
++        Image(systemName: task.category.icon)
++        .foregroundColor(.accentColor)
++        Text(task.title)
++        Spacer()
++        Text(task.category.rawValue)
++        .font(.caption)
++        .foregroundColor(.secondary)
++    }
++    .padding(.vertical, 8)
++    .padding(.horizontal, 10)
++    .background(.ultraThinMaterial)
++    .clipShape(RoundedRectangle(cornerRadius: 8))
++}
++.onDelete { indexSet in
++viewModel.deleteTask(at: indexSet)
++}
++}
+ 
+-            Picker("Category", selection: $viewModel.newTaskCategory) {
+-              ForEach(TaskCategory.allCases, id: \.self) { category in
+-                Label(category.rawValue, systemImage: category.icon)
+-                  .tag(category)
+-              }
+-            }
+-            .pickerStyle(MenuPickerStyle())
+-          }
++// Add new task section
++HStack {
++    VStack {
++        TextField("New Task", text: $viewModel.newTaskTitle)
++        .textFieldStyle(RoundedBorderTextFieldStyle())
+ 
+-          Button(action: { viewModel.addTask() }) {
+-            Text("Add")
+-          }
+-        }
+-        .padding()
+-      }
+-      .navigationTitle("To-Do List")
+-      .toolbar {
+-        ToolbarItem(placement: .navigationBarTrailing) {
+-          Button(action: { isDarkMode.toggle() }) {
+-            Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
+-          }
+-        }
+-      }
+-      .preferredColorScheme(isDarkMode ? .dark : .light)
++        Picker("Category", selection: $viewModel.newTaskCategory) {
++        ForEach(TaskCategory.allCases, id: \.self) { category in
++        Label(category.rawValue, systemImage: category.icon)
++        .tag(category)
+     }
+-  }
++}
++.pickerStyle(MenuPickerStyle())
++}
+ 
+-  #Preview {
++Button(action: { viewModel.addTask() }) {
++Text("Add")
++}
++}
++.padding()
++}
++.navigationTitle("To-Do List")
++.toolbar {
++    ToolbarItem(placement: .navigationBarTrailing) {
++    Button(action: { isDarkMode.toggle() }) {
++    Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
++}
++}
++}
++.preferredColorScheme(isDarkMode ? .dark : .light)
++}
++}
++
++#Preview {
+     ContentView()
+-  }
+ }
++}
+ // Test comment

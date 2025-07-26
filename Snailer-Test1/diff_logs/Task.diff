@@ -1,0 +1,11 @@
+diff --git a/Models/Task.swift b/Models/Task.swift
+--- a/Models/Task.swift
++++ b/Models/Task.swift
+--- /Users/gitaeklee/Desktop/study/Snailer-Test1/Snailer-Test1/diff_logs/Task.original	2025-07-22 22:04:30
++++ /Users/gitaeklee/Desktop/study/Snailer-Test1/Snailer-Test1/diff_logs/Task.updated	2025-07-22 22:04:30
+@@ -4,4 +4,5 @@
+   let id = UUID()
+   var title: String
+   var isCompleted: Bool = false
++  var tags: Set<String> = []
+ }
